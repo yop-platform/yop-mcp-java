@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: yop-mcp-java
+  ai:
+    mcp:
+      server:
+        name: yop-mcp-java
+        version: 1.0.0

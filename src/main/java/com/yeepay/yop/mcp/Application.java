@@ -1,8 +1,13 @@
 package com.yeepay.yop.mcp;
 
+import com.yeepay.yop.mcp.tool.DownloadCertTool;
+import com.yeepay.yop.mcp.tool.KeyGenTool;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.springframework.ai.tool.ToolCallbackProvider;
+import org.springframework.ai.tool.method.MethodToolCallbackProvider;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 import java.security.Security;
 
@@ -21,8 +26,13 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-//	@Bean
-//	public ToolCallbackProvider weatherTools(WeatherService weatherService) {
-//		return MethodToolCallbackProvider.builder().toolObjects(weatherService).build();
-//	}
+    @Bean
+    public ToolCallbackProvider keyGen(KeyGenTool keyGenTool) {
+        return MethodToolCallbackProvider.builder().toolObjects(keyGenTool).build();
+    }
+
+    @Bean
+    public ToolCallbackProvider downloadCert(DownloadCertTool downloadCertTool) {
+        return MethodToolCallbackProvider.builder().toolObjects(downloadCertTool).build();
+    }
 }
